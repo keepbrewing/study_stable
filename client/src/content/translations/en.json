@@ -1,0 +1,156 @@
+{
+    "participant": {
+        "title": "Let's begin 🌈",
+        "name": "Enter your name",
+        "id": "Enter your ID",
+        "start": "Start",
+        "error": "Please fill all fields"
+    },
+    "friend": {
+        "title": "Choose your friend 🫂",
+        "name": "Friend's name",
+        "continue": "Continue"
+    },
+    "pd": {
+        "title": "Look carefully 👀",
+        "steps": {
+            "1": "Look at all the pictures. Is your friend {name} having a problem?",
+            "2": "Let's look carefully once more. Is your friend {name} having a problem?",
+            "3": "Try again. Is your friend {name} having a problem?",
+            "5": "Touch the picture that shows {name} with the problem.",
+            "6": "Try again. Touch the picture that shows {name} with the problem.",
+            "7": "Look carefully and try again."
+        },
+        "modals": {
+            "4": "Let's look together. {name}'s tower fell down. {name} feels sad.",
+            "8": "This is {name}. The tower fell down, so {name} feels sad."
+        }
+    },
+    "affect": {
+        "2a": {
+            "q1": "How is your friend {name} feeling?",
+            "q2": "Let's try again. How is your friend {name} feeling?",
+            "listening": "Listening...",
+            "record": "Start Recording",
+            "stop": "Stop Recording",
+            "proceed": "Proceed"
+        },
+        "2b": {
+            "q1": "Can you show how your friend {name} is feeling?",
+            "q2": "Let's try again. Can you show how your friend {name} is feeling?",
+            "correct": "That's right!",
+            "retry": "Let's try again"
+        },
+        "2c": {
+            "q1": "Which one shows how your friend {name} is feeling?",
+            "q2": "Let's try again. Which one shows how your friend {name} is feeling?",
+            "correct": "Good job!",
+            "retry": "Try again",
+            "sad": "Sad",
+            "neutral": "Okay",
+            "happy": "Happy"
+        },
+        "3": {
+            "q1": "How do you know that your friend {name} feels like that?",
+            "q2": "Let's try again. How do you know that your friend {name} feels like that?",
+            "record": "Start Recording",
+            "stop": "Stop Recording",
+            "listening": "Listening...",
+            "proceed": "Proceed"
+        },
+        "4": {
+            "q1": "How do you feel for your friend {name}?",
+            "sad": "Sad",
+            "afraid": "Afraid",
+            "happy": "Happy",
+            "none": "Didn't feel anything"
+        },
+        "5": {
+            "q1": "How much did you feel?",
+            "low": "Not much",
+            "medium": "A little",
+            "high": "A lot"
+        }
+    },
+    "task": {
+        "q1": "What would you do now?",
+        "record": "Start Recording",
+        "stop": "Stop Recording",
+        "listening": "Listening...",
+        "proceed": "Go to next stage"
+    },
+    "gonogo": {
+        "intro": {
+            "l1": "You and other children were building block towers.",
+            "l2": "One child’s block tower fell down.",
+            "l3": "The child feels sad."
+        },
+        "instruction": {
+            "l1": "Pictures will appear one by one",
+            "l2": "If you will act or feel this way, tap or click the picture.",
+            "l3": "If not, do not tap or click anything.",
+            "start": "Start Game"
+        },
+        "categories": {
+            "ec": [
+                {
+                    "word": "Sit with your friend",
+                    "img": "console.png"
+                },
+                {
+                    "word": "Go and help your friend",
+                    "img": "pick.png"
+                },
+                {
+                    "word": "Help build the blocks again",
+                    "img": "share.png"
+                }
+            ],
+            "pd": [
+                {
+                    "word": "Feel sad for your friend",
+                    "img": "crying.png"
+                },
+                {
+                    "word": "Feel afraid",
+                    "img": "panicked.png"
+                },
+                {
+                    "word": "Don't know what to do",
+                    "img": "pity.png"
+                }
+            ],
+            "ai": [
+                {
+                    "word": "Ignore your friend",
+                    "img": "ignore.png"
+                },
+                {
+                    "word": "Keep playing",
+                    "img": "play.png"
+                },
+                {
+                    "word": "Walk away",
+                    "img": "walk.png"
+                }
+            ],
+            "pa": [
+                {
+                    "word": "Laugh at your friend",
+                    "img": "laugh.png"
+                },
+                {
+                    "word": "Make fun of your friend",
+                    "img": "smile.png"
+                },
+                {
+                    "word": "Giggle at the situation",
+                    "img": "giggle.png"
+                }
+            ]
+        }
+    },
+    "common": {
+        "thankyou": "Thank you for playing!"
+    }
+}

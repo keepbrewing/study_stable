@@ -1,0 +1,18 @@
+[
+    {
+        "id": "male1",
+        "src": "/avatars/male1.png"
+    },
+    {
+        "id": "male2",
+        "src": "/avatars/male2.png"
+    },
+    {
+        "id": "female1",
+        "src": "/avatars/female1.png"
+    },
+    {
+        "id": "female2",
+        "src": "/avatars/female2.png"
+    }
+]

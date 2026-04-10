@@ -1,0 +1,8 @@
+{
+  "contrast": [
+    "/pd/contrast1.png",
+    "/pd/contrast2.png",
+    "/pd/contrast3.png"
+  ],
+  "targetPath": "/pd/target/"
+}

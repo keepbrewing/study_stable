@@ -1,0 +1,133 @@
+.admin-wrapper {
+    min-height: 100vh;
+    position: relative;
+    overflow: hidden;
+
+    background: linear-gradient(180deg, #f8fafc, #eef2ff);
+}
+
+.admin-wrapper::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+
+    background:
+        radial-gradient(circle at 20% 20%, rgba(79, 70, 229, 0.18), transparent 50%),
+        radial-gradient(circle at 80% 30%, rgba(99, 102, 241, 0.15), transparent 50%),
+        radial-gradient(circle at 50% 80%, rgba(79, 70, 229, 0.12), transparent 60%);
+}
+
+.admin-container {
+    padding: 32px 24px;
+    max-width: 1100px;
+    margin: auto;
+    position: relative;
+    z-index: 1;
+}
+
+.admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 32px;
+}
+
+.admin-title {
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.admin-actions {
+    display: flex;
+    gap: 12px;
+}
+
+button {
+    padding: 10px 16px;
+    border-radius: var(--radius);
+    font-size: 14px;
+    transition: var(--transition);
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: var(--primary-hover);
+}
+
+.btn-danger {
+    background: var(--danger);
+    color: white;
+}
+
+.btn-danger:hover {
+    opacity: 0.9;
+}
+
+.btn-ghost {
+    background: transparent;
+    border: 1px solid var(--border);
+}
+
+.table-container {
+    background: rgba(255,255,255,0.9);
+    backdrop-filter: blur(8px);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead {
+    background: #f9fafb;
+}
+
+th,
+td {
+    padding: 14px 16px;
+    text-align: left;
+}
+
+th {
+    font-size: 13px;
+    color: var(--muted);
+    font-weight: 500;
+}
+
+tr:not(:last-child) {
+    border-bottom: 1px solid var(--border);
+}
+
+tbody tr:hover {
+    background: #f9fafb;
+}
+
+@media (max-width: 768px) {
+    .admin-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .admin-actions {
+        width: 100%;
+        flex-wrap: wrap;
+    }
+
+    table {
+        font-size: 14px;
+    }
+
+    th,
+    td {
+        padding: 10px;
+    }
+}

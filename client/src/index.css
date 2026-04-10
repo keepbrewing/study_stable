@@ -1,0 +1,446 @@
+@import url('https://fonts.googleapis.com/css2?family=ABeeZee:ital@0;1&family=Pacifico&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+.page {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    background: #F4F8FF;
+}
+
+.bg-wrapper {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.bg-wrapper svg {
+    width: 100%;
+    height: 100%;
+}
+
+/* CARD */
+.card {
+    background: white;
+    padding: 32px;
+    border-radius: 24px;
+
+    width: 100%;
+    max-width: 380px;
+
+    text-align: center;
+
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    z-index: 1;
+}
+
+/* TITLE */
+.card h2,
+.card h3 {
+    font-size: 22px;
+    margin-bottom: 20px;
+    font-family: "Pacifico", cursive;
+    font-weight: 400;
+    font-style: normal;
+}
+
+/* INPUT */
+.input {
+    font-family: "ABeeZee", sans-serif;
+    width: 100%;
+    padding: 14px;
+    margin-bottom: 16px;
+    border-radius: 14px;
+    border: none;
+    background: #fff4c2;
+    font-size: 14px;
+
+    transition: 0.2s;
+}
+
+/* focus effect */
+.input:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.2);
+}
+
+/* GENDER */
+.gender-group {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.gender-btn {
+    font-family: "ABeeZee", sans-serif;
+    flex: 1;
+    padding: 12px;
+    border-radius: 999px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+
+    background: #e5e7eb;
+    transition: all 0.2s ease;
+}
+
+/* HOVER */
+.gender-btn:hover {
+    transform: scale(1.05);
+}
+
+/* ACTIVE */
+.gender-btn.active.male {
+    background: #60a5fa;
+    color: white;
+}
+
+.gender-btn.active.female {
+    background: #f472b6;
+    color: white;
+}
+
+.primary-btn {
+    font-family: "ABeeZee", sans-serif;
+    width: 100%;
+    padding: 14px;
+    border-radius: 999px;
+    border: none;
+    font-weight: 600;
+    font-size: 15px;
+    transition: all 0.2s ease;
+}
+
+/* DEFAULT (disabled look) */
+.primary-btn.disabled {
+    background: #d1d5db;
+    color: white;
+    cursor: not-allowed;
+}
+
+/* ACTIVE (when form filled) */
+.primary-btn.active {
+    background: #8b5cf6;
+    /* violet */
+    color: white;
+    cursor: pointer;
+}
+
+/* HOVER */
+.primary-btn.active:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 14px rgba(139, 92, 246, 0.4);
+}
+
+/* ERROR */
+.error {
+    margin-top: 10px;
+    color: #ef4444;
+    font-size: 14px;
+}
+
+.lang-toggle {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+
+    display: flex;
+    gap: 6px;
+}
+
+.lang-toggle button {
+    font-family: "ABeeZee", sans-serif;
+    padding: 6px 10px;
+    border-radius: 8px;
+    border: none;
+    background: #e5e7eb;
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.lang-toggle button:hover {
+    background: #cbd5f5;
+}
+
+.lang-toggle button.active {
+    background: #8b5cf6;
+    color: white;
+}
+
+.audio-btn {
+    font-family: "ABeeZee", sans-serif;
+    margin-bottom: 16px;
+    padding: 10px 16px;
+
+    border-radius: 999px;
+    border: none;
+
+    background: #eef2ff;
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.audio-btn:hover {
+    background: #dbeafe;
+    transform: scale(1.05);
+}
+
+/* AVATAR GRID */
+.avatar-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin: 16px 0 20px;
+}
+
+/* AVATAR CARD */
+.avatar-card {
+    padding: 8px;
+    border-radius: 16px;
+    background: #f1f5f9;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.avatar-card img {
+    width: 100%;
+    border-radius: 12px;
+}
+
+/* HOVER */
+.avatar-card:hover {
+    transform: scale(1.05);
+}
+
+/* SELECTED */
+.avatar-card.selected {
+    outline: 3px solid #8b5cf6;
+    background: #ede9fe;
+}
+
+.pd-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    margin: 24px 0;
+}
+
+.pd-img img {
+    width: 100%;
+    aspect-ratio: 1/1;
+    object-fit: contain;
+}
+
+.pd-img {
+    border-radius: 16px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.pd-img.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.pd-img.hint {
+    outline: 4px dashed #facc15;
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.03);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.pd-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.pd-card {
+    max-width: 520px;
+    padding: 36px;
+}
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+}
+
+.modal-box {
+    background: white;
+    padding: 24px;
+    border-radius: 16px;
+    width: 90%;
+    max-width: 320px;
+    position: relative;
+    text-align: center;
+}
+
+.modal-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.pd-img {
+    border-radius: 16px;
+    overflow: hidden;
+    transition: 0.2s;
+}
+
+/* ONLY when enabled */
+.pd-img:not(.disabled):hover {
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+.pd-img.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.modal-image {
+    margin-top: 12px;
+}
+
+.modal-image img {
+    width: 100%;
+    max-width: 180px;
+    border-radius: 12px;
+}
+
+.control-bar {
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    display: flex;
+    gap: 8px;
+}
+
+.control-btn {
+    padding: 8px 12px;
+    border-radius: 10px;
+    border: none;
+    background: #e5e7eb;
+    cursor: pointer;
+    font-family: "ABeeZee", sans-serif;
+    transition: 0.2s;
+}
+
+.control-btn:hover {
+    background: #cbd5f5;
+}
+
+.control-btn.pause {
+    background: #fde68a;
+}
+
+.affect-image {
+    width: 100%;
+    border-radius: 16px;
+}
+
+.affect-controls {
+    margin: 16px 0;
+}
+
+.emoji-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.emoji-grid .emoji-btn:nth-child(4) {
+    grid-column: span 3;
+    justify-self: center;
+    width: 40%;
+}
+
+.affect-feedback {
+    margin-top: 12px;
+    font-weight: 600;
+}
+
+.emoji-btn {
+    width: 100%;
+    padding: 14px;
+    border-radius: 16px;
+    border: none;
+    background: #f1f5f9;
+    cursor: pointer;
+    transition: 0.2s;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.emoji-btn:hover {
+    transform: scale(1.05);
+    background: #e0e7ff;
+}
+
+.emoji {
+    font-size: clamp(32px, 8vw, 56px);
+    line-height: 1;
+}
+
+@media (max-width: 400px) {
+    .card {
+        padding: 20px;
+    }
+
+    .emoji-btn {
+        padding: 10px;
+    }
+}
+
+.gonogo-img {
+    width: 100%;
+    max-width: 220px;
+    margin: 20px auto;
+    border-radius: 16px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.gonogo-img img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+.gonogo-img:hover {
+    transform: scale(1.05);
+}
