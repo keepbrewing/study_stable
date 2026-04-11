@@ -23,8 +23,8 @@ export default function GameEngine({
     const clickedRef = useRef(false);
 
     // CONFIG
-    const IMAGE_TIME = 1000;
-    const TEXT_TIME = 1000;
+    const IMAGE_TIME = 10000;
+    const TEXT_TIME = 15000;
 
     // HELPERS
     const clearTimer = () => clearTimeout(timerRef.current);
