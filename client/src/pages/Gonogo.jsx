@@ -19,8 +19,11 @@ export default function GoNoGo() {
     const navigate = useNavigate();
 
     // LANGUAGE
+    const [lockedLang, setLockedLang] = useState(null);
     const [lang, setLang] = useState("en");
-    const t = lang === "en" ? en : bn;
+
+    const activeLang = lockedLang || lang;
+    const t = activeLang === "en" ? en : bn;
 
     // FLOW
     const [screen, setScreen] = useState("loading");
@@ -33,7 +36,7 @@ export default function GoNoGo() {
 
     // BUILD STIMULI
     const buildStimuli = (avatar, gender) => {
-        const categories = t.gonogo.categories;
+        const categories = (lockedLang === "bn" ? bn : en).gonogo.categories;
 
         const ec = categories.ec;
         const pd = categories.pd;
@@ -157,8 +160,8 @@ export default function GoNoGo() {
 
             {/* LANGUAGE */}
             <div className="lang-toggle">
-                <button onClick={() => setLang("en")} className={lang === "en" ? "active" : ""}>EN</button>
-                <button onClick={() => setLang("bn")} className={lang === "bn" ? "active" : ""}>BN</button>
+                <button onClick={() => setLang("en")} disabled={screen === "game"} className={lang === "en" ? "active" : ""}>EN</button>
+                <button onClick={() => setLang("bn")} disabled={screen === "game"} className={lang === "bn" ? "active" : ""}>BN</button>
             </div>
 
             {/* CONTROLS */}
@@ -185,7 +188,10 @@ export default function GoNoGo() {
                 {screen === "instruction" && (
                     <InstructionScreen
                         t={t}
-                        onStart={() => setScreen("game")}
+                        onStart={() => {
+                            setLockedLang(lang);
+                            setScreen("game");
+                        }}
                         playAudio={playAudio}
                     />
                 )}
