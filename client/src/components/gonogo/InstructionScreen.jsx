@@ -11,11 +11,13 @@ export default function InstructionScreen({ t, onStart, playAudio, isReady }) {
             </button>
 
             <button
-                className="primary-btn active"
+                className={`primary-btn ${isReady ? "active" : "disabled"}`}
                 onClick={onStart}
                 disabled={!isReady}
             >
-                {t.gonogo?.instruction?.start}
+                {isReady
+                    ? t.gonogo?.instruction?.start
+                    : "Preparing data...⏳"}
             </button>
 
         </div>
