@@ -35,8 +35,8 @@ export default function GoNoGo() {
     const [isPaused, setIsPaused] = useState(false);
 
     // BUILD STIMULI
-    const buildStimuli = (avatar, gender) => {
-        const categories = (lockedLang === "bn" ? bn : en).gonogo.categories;
+    const buildStimuli = (avatar, gender, langToUse) => {
+        const categories = (langToUse === "bn" ? bn : en).gonogo.categories;
 
         const ec = categories.ec;
         const pd = categories.pd;
@@ -130,15 +130,6 @@ export default function GoNoGo() {
 
                 setParticipantData(res.data);
 
-                const built = buildStimuli(
-                    res.data.friend.avatar,
-                    res.data.gender
-                );
-
-                setStimuli(built);
-
-                await preloadImages(built);
-
                 setScreen("intro");
 
             } catch (err) {
@@ -188,8 +179,17 @@ export default function GoNoGo() {
                 {screen === "instruction" && (
                     <InstructionScreen
                         t={t}
-                        onStart={() => {
+                        onStart={async () => {
                             setLockedLang(lang);
+                            const built = buildStimuli(
+                                participantData.data.friend.avatar,
+                                participantData.data.gender,
+                                lang
+                            );
+
+                            setStimuli(built);
+
+                            await preloadImages(built);
                             setScreen("game");
                         }}
                         playAudio={playAudio}
