@@ -1,4 +1,4 @@
-export default function InstructionScreen({ t, onStart, playAudio }) {
+export default function InstructionScreen({ t, onStart, playAudio, isReady }) {
     return (
         <div className="affect-content">
 

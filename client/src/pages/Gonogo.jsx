@@ -188,8 +188,8 @@ export default function GoNoGo() {
 
                             setLockedLang(lang);
                             const built = buildStimuli(
-                                participantData.data.friend.avatar,
-                                participantData.data.gender,
+                                participantData.friend.avatar,
+                                participantData.gender,
                                 lang
                             );
 
