@@ -180,6 +180,12 @@ export default function GoNoGo() {
                     <InstructionScreen
                         t={t}
                         onStart={async () => {
+                            if (!participantData || !participantData.friend) {
+                                console.error("Participant Data not ready");
+                                return;
+                            }
+
+
                             setLockedLang(lang);
                             const built = buildStimuli(
                                 participantData.data.friend.avatar,
@@ -192,6 +198,7 @@ export default function GoNoGo() {
                             await preloadImages(built);
                             setScreen("game");
                         }}
+                        isReady = {!!participantData}
                         playAudio={playAudio}
                     />
                 )}
