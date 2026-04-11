@@ -38,52 +38,69 @@ router.get("/download", verifyAdmin, async (req, res) => {
         return res.status(400).json({ message: "No data available" });
     }
 
-    const rows = [];
+    const rows = data.map(p => {
 
-    data.forEach(p => {
-        p.responses.forEach(r => {
+        const responses = p.responses || [];
 
-            rows.push({
-                // PARTICIPANT
-                participantId: p.participantId,
-                name: p.name,
-                gender: p.gender,
-                friendName: p.friend?.name || "",
-                friendAvatar: p.friend?.avatar || "",
+        // PD
+        const pd = responses.filter(r => r.stage === "pd");
 
-                // COMMON
-                stage: r.stage || "",
+        // AFFECT
+        const affect = responses.filter(r => r.stage === "affect");
 
-                // PD
-                eventType: r.eventType || "",
-                step: r.step ?? "",
+        const affect2a = affect.find(r => r.subStage === "2a")?.transcript || "";
+        const affect2b = affect.find(r => r.subStage === "2b")?.value || "";
+        const affect2c = affect.find(r => r.subStage === "2c")?.value || "";
+        const affect3  = affect.find(r => r.subStage === "3")?.transcript || "";
+        const affect4  = affect.find(r => r.subStage === "4")?.value || "";
+        const affect5  = affect.find(r => r.subStage === "5")?.value || "";
 
-                subStage: r.subStage || "",
-                type: r.type || "",
-                transcript: r.transcript || "",
-                attempt: r.attempt ?? "",
+        // TASK
+        const task = responses.find(r => r.stage === "task");
 
-                // SHARED
-                value: r.value || "",
-                correct: r.correct ?? "",
-                responseTimeMs: r.responseTimeMs ?? "",
+        // GONOGO
+        const gonogo = responses.filter(r => r.stage === "gonogo");
 
-                // GONOGO
-                gonogoCategory: r.stage === "gonogo" ? r.category : "",
-                gonogoValue: r.stage === "gonogo" ? r.value : "",
+        const uniqueCategories = [...new Set(gonogo.map(r => r.category))];
+        const uniqueValues = [...new Set(gonogo.map(r => r.value))];
 
-                // TIMESTAMP
-                createdAt: r.createdAt
-            });
+        return {
+            // PARTICIPANT
+            participantId: p.participantId,
+            name: p.name,
+            gender: p.gender,
+            friendName: p.friend?.name || "",
+            friendAvatar: p.friend?.avatar || "",
 
-        });
+            // PD
+            pdCount: pd.length,
+
+            // AFFECT
+            affect_2a: affect2a,
+            affect_2b: affect2b,
+            affect_2c: affect2c,
+            affect_3: affect3,
+            affect_4: affect4,
+            affect_5: affect5,
+
+            // TASK
+            task: task?.transcript || "",
+
+            // GONOGO
+            gonogoCategories: uniqueCategories.join(", "),
+            gonogoResponses: uniqueValues.join(", "),
+
+            // META
+            totalResponses: responses.length,
+            createdAt: p.createdAt
+        };
     });
 
     const parser = new Parser();
     const csv = parser.parse(rows);
 
     res.header("Content-Type", "text/csv");
-    res.attachment("participants.csv");
+    res.attachment("participants_clean.csv");
     res.send(csv);
 });
 

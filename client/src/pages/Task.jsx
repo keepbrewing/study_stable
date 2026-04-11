@@ -63,8 +63,8 @@ export default function Task() {
         if (!("webkitSpeechRecognition" in window)) return;
 
         const recognition = new window.webkitSpeechRecognition();
-        recognition.continuous = true;
-        recognition.interimResults = true;
+        recognition.continuous = false;;
+        recognition.interimResults = false;
 
         recognition.onresult = (event) => {
             let text = "";

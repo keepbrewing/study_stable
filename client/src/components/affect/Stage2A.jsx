@@ -18,7 +18,10 @@ export default function Stage2A({
     const [hasSpoken, setHasSpoken] = useState(false);
     const [completed, setCompleted] = useState(false);
 
-    const startTimer = (callback, delay = 10000) => {
+    const MAIN_DELAY = 30000;
+    const SILENCE_DELAY = 12000;
+
+    const startTimer = (callback, delay = MAIN_DELAY) => {
         clearTimeout(timerRef.current);
         timerRef.current = setTimeout(callback, delay);
     };
@@ -28,8 +31,8 @@ export default function Stage2A({
         if (!("webkitSpeechRecognition" in window)) return;
 
         const recognition = new window.webkitSpeechRecognition();
-        recognition.continuous = true;
-        recognition.interimResults = true;
+        recognition.continuous = false;
+        recognition.interimResults = false;
 
         recognition.onresult = (event) => {
             let text = "";
@@ -69,7 +72,7 @@ export default function Stage2A({
 
         silenceTimerRef.current = setTimeout(() => {
             if (!hasSpoken) handleNoSpeech();
-        }, 7000);
+        }, SILENCE_DELAY);
     };
 
     const stopRecording = async () => {

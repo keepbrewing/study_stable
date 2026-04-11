@@ -23,8 +23,8 @@ export default function GameEngine({
     const clickedRef = useRef(false);
 
     // CONFIG
-    const IMAGE_TIME = 3000;
-    const TEXT_TIME = 4000;
+    const IMAGE_TIME = 1000;
+    const TEXT_TIME = 1000;
 
     // HELPERS
     const clearTimer = () => clearTimeout(timerRef.current);
@@ -36,6 +36,8 @@ export default function GameEngine({
 
     // LOG
     const logResponse = async (stimulus) => {
+        if (!stimulus?.category || !stimulus?.word) return;
+        console.log(stimulus);
         try {
             await axios.post(`${import.meta.env.VITE_API_URL}/api/response/log`, {
                 participantId,

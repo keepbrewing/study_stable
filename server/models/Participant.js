@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 
 const responseSchema = new mongoose.Schema({
     stage: String,
+    category: String,
     eventType: { type: String, default: null },
     step: { type: Number, default: null },
 

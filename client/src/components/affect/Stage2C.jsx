@@ -15,7 +15,9 @@ export default function Stage2C({
 
     const timerRef = useRef(null);
 
-    const startTimer = (callback, delay = 10000) => {
+    const MAIN_DELAY = 30000;
+
+    const startTimer = (callback, delay = MAIN_DELAY) => {
         clearTimeout(timerRef.current);
         timerRef.current = setTimeout(callback, delay);
     };
@@ -49,7 +51,7 @@ export default function Stage2C({
                 onNext();
             }
 
-        }, 10000);
+        }, MAIN_DELAY);
 
         return () => clearTimeout(timerRef.current);
 
@@ -83,7 +85,7 @@ export default function Stage2C({
 
         setTimeout(() => {
             onNext(); // → Stage 3
-        }, 800);
+        }, 1200);
     };
 
     // ---------------- UI ----------------
