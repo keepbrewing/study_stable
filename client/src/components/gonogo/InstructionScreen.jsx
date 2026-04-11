@@ -13,7 +13,7 @@ export default function InstructionScreen({ t, onStart, playAudio }) {
             <button
                 className="primary-btn active"
                 onClick={onStart}
-                disabled={!!isReady}
+                disabled={!isReady}
             >
                 {t.gonogo?.instruction?.start}
             </button>
