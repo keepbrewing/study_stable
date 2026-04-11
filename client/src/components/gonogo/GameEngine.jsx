@@ -37,7 +37,7 @@ export default function GameEngine({
     // LOG
     const logResponse = async (stimulus) => {
         if (!stimulus?.category || !stimulus?.word) return;
-        console.log(stimulus);
+        //console.log(stimulus);
         try {
             await axios.post(`${import.meta.env.VITE_API_URL}/api/response/log`, {
                 participantId,
