@@ -198,7 +198,7 @@ export default function GoNoGo() {
                             await preloadImages(built);
                             setScreen("game");
                         }}
-                        isReady = {!!participantData}
+                        isReady = {!!participantData?.friend}
                         playAudio={playAudio}
                     />
                 )}
