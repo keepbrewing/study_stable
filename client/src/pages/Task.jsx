@@ -63,8 +63,10 @@ export default function Task() {
         if (!("webkitSpeechRecognition" in window)) return;
 
         const recognition = new window.webkitSpeechRecognition();
-        recognition.continuous = false;;
+        recognition.continuous = false;
         recognition.interimResults = false;
+
+        recognition.lang = lang === "bn" ? "bn-IN" : "en-US";
 
         recognition.onresult = (event) => {
             let text = "";
@@ -80,7 +82,7 @@ export default function Task() {
         };
 
         recognitionRef.current = recognition;
-    }, []);
+    }, [lang]);
 
     // LOGGING 
     const logResponse = async (payload) => {
@@ -96,7 +98,7 @@ export default function Task() {
 
     const playAudio = () => {
         try {
-            const audio = new Audio(audioData.instruction);
+            const audio = new Audio(audioData[lang]?.instruction);
             audio.play().catch(() => { });
         } catch { }
     };
@@ -104,11 +106,17 @@ export default function Task() {
     const startRecording = () => {
         if (!recognitionRef.current) return;
 
-        setTranscript("");
-        setHasSpoken(false);
-        setIsRecording(true);
+        try {
+            setTranscript("");
+            setHasSpoken(false);
+            setIsRecording(true);
 
-        recognitionRef.current.start();
+            recognitionRef.current.start();
+        }
+        catch (err) {
+            console.error("Speech start error: ", err);
+            setIsRecording(false);
+        }
     };
 
     const stopRecording = () => {

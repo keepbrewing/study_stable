@@ -65,7 +65,7 @@ export default function Friend() {
 
     const playAudio = () => {
         try {
-            const audio = new Audio(audioData.instruction);
+            const audio = new Audio(audioData[lang]?.instruction);
             audio.play().catch(err => console.error("Audio error:", err));
         } catch (err) {
             console.error("Audio failed:", err);

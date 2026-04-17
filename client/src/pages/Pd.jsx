@@ -195,7 +195,7 @@ export default function Pd() {
 
     // AUDIO
     const playAudio = (customStep = step) => {
-        const audio = new Audio(`/pd/audio/step${customStep}.mp3`);
+        const audio = new Audio(`/pd/audio/${lang}/step${customStep}.mp3`);
         console.log(customStep);
         audio.play().catch(() => { });
     };

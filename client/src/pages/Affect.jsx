@@ -165,12 +165,13 @@ export default function Affect() {
                             className="affect-image"
                         />
 
-                        {/* ================= STAGES ================= */}
+                        {/* STAGES */}
 
                         {stage === "2a" && (
                             <Stage2A
                                 name={name}
                                 t={t}
+                                lang={lang}
                                 logResponse={logResponse}
                                 isPaused={isPaused}
                                 onNext={() => setStage("2b")}
@@ -181,6 +182,7 @@ export default function Affect() {
                             <Stage2B
                                 name={name}
                                 t={t}
+                                lang={lang}
                                 isPaused={isPaused}
                                 onNext={(nextStage) => setStage(nextStage || "3")}
                                 logResponse={logResponse}
@@ -190,6 +192,7 @@ export default function Affect() {
                             <Stage2C
                                 name={name}
                                 t={t}
+                                lang={lang}
                                 isPaused={isPaused}
                                 logResponse={logResponse}
                                 onNext={() => setStage("3")}
@@ -199,6 +202,7 @@ export default function Affect() {
                             <Stage3
                                 name={name}
                                 t={t}
+                                lang={lang}
                                 logResponse={logResponse}
                                 isPaused={isPaused}
                                 onNext={() => setStage("4")}
@@ -208,6 +212,7 @@ export default function Affect() {
                             <Stage4
                                 name={name}
                                 t={t}
+                                lang={lang}
                                 logResponse={logResponse}
                                 completeAffect={completeAffect}
                                 onNext={(next) => setStage(next)}
@@ -218,6 +223,7 @@ export default function Affect() {
                             <Stage5
                                 name={name}
                                 t={t}
+                                lang={lang}
                                 logResponse={logResponse}
                                 completeAffect={completeAffect}
                                 onNext={(next) => setStage(next)}

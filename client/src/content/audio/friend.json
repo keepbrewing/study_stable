@@ -1,3 +1,8 @@
 {
-    "instruction": "/audio/friend.mp3"
+    "en": {
+        "instruction": "/audio/friend.mp3"
+    },
+    "bn": {
+        "instruction": "/audio/friend_bn.mp3"
+    }
 }

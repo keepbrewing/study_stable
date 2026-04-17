@@ -4,6 +4,7 @@ import audioData from "../../content/audio/affect.json";
 export default function Stage2A({
     name,
     t,
+    lang,
     logResponse,
     onNext,
     isPaused
@@ -34,6 +35,8 @@ export default function Stage2A({
         recognition.continuous = false;
         recognition.interimResults = false;
 
+        recognition.lang = lang === "bn" ? "bn-IN" : "en-US";
+
         recognition.onresult = (event) => {
             let text = "";
             for (let i = 0; i < event.results.length; i++) {
@@ -49,13 +52,13 @@ export default function Stage2A({
         };
 
         recognitionRef.current = recognition;
-    }, []);
+    }, [lang]);
 
     // AUDIO
     const playAudio = () => {
         try {
             const key = attempt === 1 ? "q1" : "q2";
-            const audio = new Audio(audioData["2a"][key]);
+            const audio = new Audio(audioData[lang]?.["2a"]?.[key]);
             audio.play().catch(() => { });
         } catch { }
     };
@@ -63,16 +66,21 @@ export default function Stage2A({
     // RECORD
     const startRecording = () => {
         if (!recognitionRef.current) return;
+        try {
+            setTranscript("");
+            setHasSpoken(false);
+            setIsRecording(true);
 
-        setTranscript("");
-        setHasSpoken(false);
-        setIsRecording(true);
+            recognitionRef.current.start();
 
-        recognitionRef.current.start();
-
-        silenceTimerRef.current = setTimeout(() => {
-            if (!hasSpoken) handleNoSpeech();
-        }, SILENCE_DELAY);
+            silenceTimerRef.current = setTimeout(() => {
+                if (!hasSpoken) handleNoSpeech();
+            }, SILENCE_DELAY);
+        }
+        catch (err) {
+            console.error("Speech start error: ", err);
+            setIsRecording(false);
+        }
     };
 
     const stopRecording = async () => {

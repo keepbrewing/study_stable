@@ -1,3 +1,8 @@
 {
-    "instruction": "/audio/gonogo.mp3"
+    "en": {
+        "instruction": "/audio/gonogo.mp3"
+    },
+    "bn": {
+        "instruction": "/audio/gonogo_bn.mp3"
+    }
 }

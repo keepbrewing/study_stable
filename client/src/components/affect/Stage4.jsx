@@ -4,6 +4,7 @@ import audioData from "../../content/audio/affect.json";
 export default function Stage4({
     name,
     t,
+    lang,
     logResponse,
     onNext,
     completeAffect
@@ -13,7 +14,7 @@ export default function Stage4({
 
     const playAudio = () => {
         try {
-            const audio = new Audio(audioData["4"]?.q1);
+            const audio = new Audio(audioData[lang]?.["4"]?.q1);
             audio.play().catch(() => { });
         } catch { }
     };

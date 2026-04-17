@@ -4,6 +4,7 @@ import audioData from "../../content/audio/affect.json";
 export default function Stage3({
     name,
     t,
+    lang,
     logResponse,
     onNext,
     isPaused
@@ -19,7 +20,7 @@ export default function Stage3({
     const [completed, setCompleted] = useState(false);
 
     const MAIN_DELAY = 30000;
-    const SILENCE_DELAY= 12000;
+    const SILENCE_DELAY = 12000;
 
     const startTimer = (callback, delay = MAIN_DELAY) => {
         clearTimeout(timerRef.current);
@@ -33,6 +34,8 @@ export default function Stage3({
         const recognition = new window.webkitSpeechRecognition();
         recognition.continuous = false;
         recognition.interimResults = false;
+
+        recognition.lang = lang === "bn" ? "bn-IN" : "en-US";
 
         recognition.onresult = (event) => {
             let text = "";
@@ -49,13 +52,13 @@ export default function Stage3({
         };
 
         recognitionRef.current = recognition;
-    }, []);
+    }, [lang]);
 
     // AUDIO
     const playAudio = () => {
         try {
             const key = attempt === 1 ? "q1" : "q2";
-            const audio = new Audio(audioData["3"][key]);
+            const audio = new Audio(audioData[lang]?.["3"]?.[key]);
             audio.play().catch(() => { });
         } catch { }
     };
@@ -63,16 +66,22 @@ export default function Stage3({
     // RECORD
     const startRecording = () => {
         if (!recognitionRef.current) return;
+        try {
+            setTranscript("");
+            setHasSpoken(false);
+            setIsRecording(true);
 
-        setTranscript("");
-        setHasSpoken(false);
-        setIsRecording(true);
-
-        recognitionRef.current.start();
+            recognitionRef.current.start();
+        }
+        catch (err) {
+            console.error("Speech start error", err);
+            setIsRecording(false);
+        }
 
         silenceTimerRef.current = setTimeout(() => {
             if (!hasSpoken) handleNoSpeech();
         }, SILENCE_DELAY);
+
     };
 
     const stopRecording = async () => {

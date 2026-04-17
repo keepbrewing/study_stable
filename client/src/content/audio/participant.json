@@ -1,3 +1,8 @@
 {
-    "instruction": "/audio/participant.mp3"
+    "en": {
+        "instruction": "/audio/participant.mp3"
+    },
+    "bn": {
+        "instruction": "/audio/participant_bn.mp3"
+    }
 }

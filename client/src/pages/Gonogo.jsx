@@ -99,7 +99,7 @@ export default function GoNoGo() {
 
     const playAudio = () => {
         try {
-            const audio = new Audio(audioData.instruction);
+            const audio = new Audio(audioData[lang]?.instruction);
             audio.play().catch(() => { });
         } catch { }
     };

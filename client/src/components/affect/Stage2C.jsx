@@ -4,6 +4,7 @@ import audioData from "../../content/audio/affect.json";
 export default function Stage2C({
     name,
     t,
+    lang,
     isPaused,
     onNext,
     logResponse
@@ -26,7 +27,7 @@ export default function Stage2C({
     const playAudio = () => {
         try {
             const key = attempt === 1 ? "q1" : "q2";
-            const audio = new Audio(audioData["2c"][key]);
+            const audio = new Audio(audioData[lang]?.["2c"]?.[key]);
             audio.play().catch(() => { });
         } catch (err) {
             console.error("Audio failed:", err);

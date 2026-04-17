@@ -60,6 +60,12 @@ export default function GameEngine({
         setClicked(true);
 
         logResponse(stimuli[index]);
+
+        clearTimer();
+
+        setTimeout(() => {
+            moveNext();
+        }, 200);
     };
 
     const handleBreak1End = useCallback(() => {
