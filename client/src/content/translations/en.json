@@ -80,10 +80,11 @@
         "proceed": "Go to next stage"
     },
     "gonogo": {
+        "paPrompt": "Why did you choose this?",
         "intro": {
             "l1": "You and other children were building block towers.",
-            "l2": "One child’s block tower fell down.",
-            "l3": "The child feels sad."
+            "l2": "Your friend's block tower fell down.",
+            "l3": "Your friend feels sad."
         },
         "instruction": {
             "l1": "Pictures will appear one by one",
@@ -151,6 +152,11 @@
         }
     },
     "common": {
-        "thankyou": "Thank you for playing!"
+        "thankyou": "Thank you for playing!",
+        "start": "Start",
+        "stop": "Stop",
+        "listening": "Listening...",
+        "speakNow": "Tap start and speak",
+        "proceed": "Proceed"
     }
 }

@@ -172,6 +172,8 @@ export default function GoNoGo() {
                 {screen === "intro" && (
                     <IntroScreen
                         t={t}
+                        lang={lang}
+                        audioData={audioData}
                         onNext={() => setScreen("instruction")}
                     />
                 )}

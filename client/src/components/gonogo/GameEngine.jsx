@@ -17,14 +17,17 @@ export default function GameEngine({
     const [clicked, setClicked] = useState(false);
     const [phase, setPhase] = useState("practice");
     const [showModal, setShowModal] = useState(true);
+    const [showPAModal, setShowPAModal] = useState(false);
+    const [paTranscript, setPaTranscript] = useState("");
 
+    const recognitionRef = useRef(null);
     const timerRef = useRef(null);
     const startTimeRef = useRef(Date.now());
     const clickedRef = useRef(false);
 
     // CONFIG
-    const IMAGE_TIME = 1500;
-    const TEXT_TIME = 13500;
+    const IMAGE_TIME = 1000;
+    const TEXT_TIME = 10000;
 
     // HELPERS
     const clearTimer = () => clearTimeout(timerRef.current);
@@ -56,6 +59,13 @@ export default function GameEngine({
     const handleClick = () => {
         if (clickedRef.current) return;
 
+        const stimulus = stimuli[index];
+        if (stimulus.category === "pa") {
+            setPaTranscript("");
+            setShowPAModal(true);
+            return;
+        }
+
         clickedRef.current = true;
         setClicked(true);
 
@@ -83,9 +93,36 @@ export default function GameEngine({
         setIndex(12);
     }, []);
 
+    const startRecording = () => {
+        if (!recognitionRef.current) return;
+
+        setPaTranscript("");
+
+        try {
+            recognitionRef.current.start();
+        } catch { }
+    };
+
+    const stopRecording = () => {
+        if (!recognitionRef.current) return;
+
+        recognitionRef.current.stop();
+    };
+
+    const handlePASubmit = () => {
+        const stimulus = stimuli[index];
+
+        setShowPAModal(false);
+        setClicked(true);
+
+        setTimeout(() => {
+            moveNext();
+        }, 200);
+    };
+
     // FLOW
     useEffect(() => {
-        if (isPaused || showModal) return;
+        if (isPaused || showModal || showPAModal) return;
 
         const stimulus = stimuli[index];
 
@@ -120,7 +157,27 @@ export default function GameEngine({
             clearTimeout(initDelay);
         };
 
-    }, [index, isPaused, showModal]);
+    }, [index, isPaused, showModal, showPAModal]);
+
+    useEffect(() => {
+        if (!("webkitSpeechRecognition" in window)) return;
+
+        const recognition = new window.webkitSpeechRecognition();
+        recognition.continuous = false;
+        recognition.interimResults = false;
+
+        recognition.lang = t === "bn" ? "bn-IN" : "en-US";
+
+        recognition.onresult = (event) => {
+            let text = "";
+            for (let i = 0; i < event.results.length; i++) {
+                text += event.results[i][0].transcript;
+            }
+            setPaTranscript(text);
+        };
+
+        recognitionRef.current = recognition;
+    }, []);
 
     // MOVE NEXT
     const moveNext = () => {
@@ -218,6 +275,33 @@ export default function GameEngine({
 
             {/* FEEDBACK */}
             {clicked && <div className="affect-feedback">✔</div>}
+
+            {showPAModal && (
+                <div className="modal-overlay">
+                    <div className="modal-box">
+
+                        <p>{t.gonogo?.paPrompt || "Why did you choose this?"}</p>
+
+                        <div className="affect-controls">
+                            <button onClick={startRecording}>🎤 Start</button>
+                            <button onClick={stopRecording}>⏹ Stop</button>
+                        </div>
+
+                        <div className="affect-transcript">
+                            {paTranscript || "Listening..."}
+                        </div>
+
+                        <button
+                            className="primary-btn active"
+                            onClick={handlePASubmit}
+                            disabled={!paTranscript.trim()}
+                        >
+                            {t.common?.proceed || "Proceed"}
+                        </button>
+
+                    </div>
+                </div>
+            )}
 
         </div>
     );

@@ -1,8 +1,10 @@
 {
     "en": {
-        "instruction": "/audio/gonogo.mp3"
+        "instruction": "/audio/gonogo.mp3",
+        "intro": "/audio/gIntro.mp3"
     },
     "bn": {
-        "instruction": "/audio/gonogo_bn.mp3"
+        "instruction": "/audio/gonogo_bn.mp3",
+        "intro": "/audio/gIntro_bn.mp3"
     }
 }
