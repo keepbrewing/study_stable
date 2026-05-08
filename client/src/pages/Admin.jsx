@@ -70,6 +70,27 @@ export default function Admin() {
         link.click();
     };
 
+    const handleScoreSheetDownload = async () => {
+        const res = await axios.get(
+            `${import.meta.env.VITE_API_URL}/api/admin/download-scoresheet`,
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                },
+                responseType: "blob"
+            }
+        );
+
+        const url = window.URL.createObjectURL(new Blob([res.data]));
+
+        const link = document.createElement("a");
+        link.href = url;
+        link.setAttribute("download", "scoresheet.csv");
+
+        document.body.appendChild(link);
+        link.click();
+    };
+
     const handleLogout = () => {
         localStorage.removeItem("token");
         window.location.href = "/admin-login";
@@ -81,6 +102,7 @@ export default function Admin() {
                 <div className="admin-header">
                     <h2 className="admin-title">Admin Panel</h2>
                     <div className="admin-actions">
+                        <button className="btn-primary" onClick={handleScoreSheetDownload}>Score Sheet CSV</button>
                         <button className="btn-primary" onClick={handleDownload}>Download CSV</button>
                         <button className="btn-ghost" onClick={handleLogout}>Logout</button>
                     </div>
@@ -182,7 +204,7 @@ export default function Admin() {
                                                             ?.filter(r => r.stage === "gonogo")
                                                             .map((r, i) => (
                                                                 <div key={i}>
-                                                                    {r.category} | {r.value}
+                                                                    {r.category} | {r.value} | {r.modalInput}
                                                                 </div>
                                                             ))}
                                                     </div>

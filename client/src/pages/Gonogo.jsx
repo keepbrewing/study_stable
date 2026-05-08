@@ -10,6 +10,7 @@ import InstructionScreen from "../components/gonogo/InstructionScreen";
 import GameEngine from "../components/gonogo/GameEngine";
 import LoadingScreen from "../components/gonogo/LoadingScreen";
 import BreakScreen from "../components/gonogo/BreakScreen";
+import StimulusPreview from "../components/gonogo/StimulusPreview";
 
 import en from "../content/translations/en.json";
 import bn from "../content/translations/bn.json";
@@ -151,8 +152,8 @@ export default function GoNoGo() {
 
             {/* LANGUAGE */}
             <div className="lang-toggle">
-                <button onClick={() => setLang("en")} disabled={screen === "game"} className={lang === "en" ? "active" : ""}>EN</button>
-                <button onClick={() => setLang("bn")} disabled={screen === "game"} className={lang === "bn" ? "active" : ""}>BN</button>
+                <button onClick={() => setLang("en")} disabled={screen === "game" || screen === "preview"} className={lang === "en" ? "active" : ""}>EN</button>
+                <button onClick={() => setLang("bn")} disabled={screen === "game" || screen === "preview"} className={lang === "bn" ? "active" : ""}>BN</button>
             </div>
 
             {/* CONTROLS */}
@@ -198,10 +199,18 @@ export default function GoNoGo() {
                             setStimuli(built);
 
                             await preloadImages(built);
-                            setScreen("game");
+                            setScreen("preview");
                         }}
-                        isReady = {!!participantData?.friend}
+                        isReady={!!participantData?.friend}
                         playAudio={playAudio}
+                    />
+                )}
+
+                {screen === "preview" && (
+                    <StimulusPreview
+                        t={t}
+                        stimuli={stimuli}
+                        onNext={() => setScreen("game")}
                     />
                 )}
 

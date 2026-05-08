@@ -80,6 +80,7 @@
         "proceed": "Go to next stage"
     },
     "gonogo": {
+        "previewTitle": "Look at all the pictures carefully",
         "paPrompt": "Why did you choose this?",
         "intro": {
             "l1": "You and other children were building block towers.",
@@ -157,6 +158,7 @@
         "stop": "Stop",
         "listening": "Listening...",
         "speakNow": "Tap start and speak",
-        "proceed": "Proceed"
+        "proceed": "Proceed",
+        "typeHere": "Type here if recording does not work"
     }
 }

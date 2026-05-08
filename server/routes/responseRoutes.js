@@ -168,9 +168,7 @@ router.post("/log", async (req, res) => {
         } else if (data.stage === "gonogo") {
 
             user.responses.push({
-                stage: "gonogo",
-                category: data.category,
-                value: data.value,
+                ...data,
                 createdAt: new Date()
             });
         }

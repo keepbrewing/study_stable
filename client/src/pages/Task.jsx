@@ -213,6 +213,13 @@ export default function Task() {
                 </div>
                 <br></br>
 
+                <textarea
+                    className="speech-input"
+                    value={transcript}
+                    onChange={(e) => setTranscript(e.target.value)}
+                    placeholder={t.common?.typeHere || "Type here if recording does not work"}
+                />
+
                 {/* ALWAYS AVAILABLE */}
                 <button
                     className="primary-btn active"

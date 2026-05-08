@@ -121,7 +121,13 @@ export default function Stage2A({
         }
     };
 
-    const handleProceed = () => {
+    const handleProceed = async () => {
+        await logResponse({
+            stage: "affect",
+            subStage: "2a",
+            type: "speech",
+            transcript: transcript.trim()
+        });
         setCompleted(true);
         onNext();
     };
@@ -174,6 +180,12 @@ export default function Stage2A({
             <div className="affect-transcript">
                 {transcript || t.affect?.["2a"]?.listening}
             </div>
+            <textarea
+                className="speech-input"
+                value={transcript}
+                onChange={(e) => setTranscript(e.target.value)}
+                placeholder={t.common?.typeHere || "Type here if recording does not work"}
+            />
 
             {!isRecording && transcript && (
                 <button className="primary-btn active" onClick={handleProceed}>

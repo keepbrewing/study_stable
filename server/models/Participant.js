@@ -14,6 +14,7 @@ const responseSchema = new mongoose.Schema({
     subStage: String,
     type: String,
     transcript: String,
+    modalInput: String,
     attempt: Number,
 
     createdAt: {

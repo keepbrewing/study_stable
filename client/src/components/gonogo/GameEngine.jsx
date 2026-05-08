@@ -47,7 +47,8 @@ export default function GameEngine({
                 data: {
                     stage: "gonogo",
                     category: stimulus.category,
-                    value: stimulus.word
+                    value: stimulus.word,
+                    modalInput: paTranscript
                 }
             });
         } catch (err) {
@@ -60,7 +61,7 @@ export default function GameEngine({
         if (clickedRef.current) return;
 
         const stimulus = stimuli[index];
-        if (stimulus.category === "pa") {
+        if (stimulus.category === "pa" || stimulus.category === "ai") {
             setPaTranscript("");
             setShowPAModal(true);
             return;
@@ -109,8 +110,28 @@ export default function GameEngine({
         recognitionRef.current.stop();
     };
 
-    const handlePASubmit = () => {
+    const handlePASubmit = async () => {
         const stimulus = stimuli[index];
+
+        try {
+
+            // main stimulus log
+            await axios.post(
+                `${import.meta.env.VITE_API_URL}/api/response/log`,
+                {
+                    participantId,
+                    data: {
+                        stage: "gonogo",
+                        category: stimulus.category,
+                        value: stimulus.word,
+                        modalInput: paTranscript.trim()
+                    }
+                }
+            );
+
+        } catch (err) {
+            console.error("PA/AI LOG ERROR", err);
+        }
 
         setShowPAModal(false);
         setClicked(true);
@@ -290,6 +311,12 @@ export default function GameEngine({
                         <div className="affect-transcript">
                             {paTranscript || "Listening..."}
                         </div>
+                        <textarea
+                            className="speech-input"
+                            value={paTranscript}
+                            onChange={(e) => setPaTranscript(e.target.value)}
+                            placeholder={t.common?.typeHere || "Type here if recording does not work"}
+                        />
 
                         <button
                             className="primary-btn active"
