@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Participant  from "./pages/Participant";
+import Participant from "./pages/Participant";
 import Friend from "./pages/Friend";
 import Pd from "./pages/Pd";
 import Affect from "./pages/Affect";
@@ -11,19 +11,17 @@ import AdminLogin from "./pages/AdminLogin";
 
 function PicnicApp() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Participant />}></Route>
-        <Route path="/friend" element={<Friend />}></Route>
-        <Route path="/pd" element={<Pd />}></Route>
-        <Route path="/affect" element={<Affect />}></Route>
-        <Route path="/task" element={<Task />}></Route>
-        <Route path="/gonogo" element={<Gonogo />}></Route>
-        <Route path="/thankyou" element={<ThankYou />}></Route>
-        <Route path="/admin" element={<Admin />}></Route>
-        <Route path="/admin-login" element={<AdminLogin />}></Route>
-      </Routes>
-    </BrowserRouter>
+    <Routes>
+      <Route path="/" element={<Participant />}></Route>
+      <Route path="/friend" element={<Friend />}></Route>
+      <Route path="/pd" element={<Pd />}></Route>
+      <Route path="/affect" element={<Affect />}></Route>
+      <Route path="/task" element={<Task />}></Route>
+      <Route path="/gonogo" element={<Gonogo />}></Route>
+      <Route path="/thankyou" element={<ThankYou />}></Route>
+      <Route path="/admin" element={<Admin />}></Route>
+      <Route path="/admin-login" element={<AdminLogin />}></Route>
+    </Routes>
   );
 }
 

@@ -24,7 +24,7 @@ function App() {
         <Route path="/admin" element={<Admin />}></Route>
         <Route path="/admin-login" element={<AdminLogin />}></Route>
 
-        <Route path="/picnic/" element={<PicnicApp />}></Route> 
+        <Route path="/picnic/*" element={<PicnicApp />}></Route> 
       </Routes>
     </BrowserRouter>
   );
