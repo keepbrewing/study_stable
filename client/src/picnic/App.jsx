@@ -8,9 +8,8 @@ import Gonogo from "./pages/Gonogo";
 import ThankYou from "./pages/ThankYou";
 import Admin from "./pages/Admin";
 import AdminLogin from "./pages/AdminLogin";
-import PicnicApp from "./picnic/App";
 
-function App() {
+function PicnicApp() {
   return (
     <BrowserRouter>
       <Routes>
@@ -23,12 +22,9 @@ function App() {
         <Route path="/thankyou" element={<ThankYou />}></Route>
         <Route path="/admin" element={<Admin />}></Route>
         <Route path="/admin-login" element={<AdminLogin />}></Route>
-
-        /** Picnic */
-        <Route path="/picnic/*" element={<PicnicApp />}></Route> 
       </Routes>
     </BrowserRouter>
   );
 }
 
-export default App;
+export default PicnicApp;
